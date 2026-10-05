@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-geist-mono);
+  --color-brand-50: #eef6ff;
+  --color-brand-100: #d9eaff;
+  --color-brand-200: #bcdaff;
+  --color-brand-300: #8ec3ff;
+  --color-brand-400: #59a1ff;
+  --color-brand-500: #337dff;
+  --color-brand-600: #0b6bcb;
+  --color-brand-700: #0a56a6;
+  --color-brand-800: #0e4987;
+  --color-brand-900: #123f70;
+  --color-brand-950: #0c274a;
+}
+
+html,
+body {
+  background: #f5f7fb;
+  color: #0f172a;
+}
+
+body {
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------- Componentes reutilizables ---------- */
+@utility card {
+  @apply rounded-2xl border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-12px_rgba(15,23,42,0.08)];
+}
+@utility label {
+  @apply mb-1.5 block text-[11px] font-semibold tracking-wide text-slate-500 uppercase;
+}
+@utility input {
+  @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm transition outline-none placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 disabled:bg-slate-50;
+}
+@utility btn {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold whitespace-nowrap transition active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-brand-600 text-white shadow-lg shadow-brand-600/25 hover:bg-brand-700;
+}
+@utility btn-secondary {
+  @apply btn border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50;
+}
+@utility btn-ghost {
+  @apply btn text-slate-600 hover:bg-slate-100;
+}
+@utility btn-danger {
+  @apply btn bg-rose-600 text-white shadow-lg shadow-rose-600/20 hover:bg-rose-700;
+}
+@utility badge {
+  @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold whitespace-nowrap ring-1 ring-inset;
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.35s ease-out both;
+}
+
+/* ---------- Impresión del contrato ---------- */
+@page {
+  size: letter;
+  margin: 8mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-area {
+    box-shadow: none !important;
+    margin: 0 !important;
+    border: none !important;
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+  .print-page {
+    break-after: page;
+  }
+  .fit-outer {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .fit-inner {
+    transform: none !important;
+    width: 100% !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
